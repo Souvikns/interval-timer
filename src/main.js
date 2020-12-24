@@ -1,9 +1,11 @@
-const { app, BrowserWindow, Tray } = require('electron');
+const { app, BrowserWindow, Tray, ipcMain } = require('electron');
 const path = require('path');
+const { timer } = require('./process/main/timer')
 
 let tray = null;
 let window = null;
 app.dock.hide();
+
 
 
 const createTray = () => {
@@ -13,22 +15,31 @@ const createTray = () => {
 
 const createWindow = () => {
     window = new BrowserWindow({
-        width: 360,
-        height: 260,
+        width: 800,
+        height: 660,
         resizable: false,
         movable: true,
         webPreferences: {
-            nodeIntegration: true
-        }
+            nodeIntegration: true,
+            devTools: true
+        },
     })
-    window.loadFile(path.join(__dirname, 'screens/index.html'))
+    window.loadFile(path.join(__dirname, 'screens/index.html'));
+    window.webContents.openDevTools();
 }
 
-app.whenReady().then(createTray);
+app.whenReady().then(() => {
+    createTray();
+});
 
 
 app.on('window-all-closed', () => {
-    if(process.platform !== "darwin"){
+    if (process.platform !== "darwin") {
         app.quit()
     }
+})
+
+ipcMain.handle('ready', (event, ...args) => {
+    console.log(event)
+    ipcMain.emit('tick')
 })
