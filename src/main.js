@@ -13,8 +13,10 @@ const createTray = () => {
 
 const createWindow = () => {
     window = new BrowserWindow({
-        width: 600,
-        height: 450,
+        width: 360,
+        height: 260,
+        resizable: false,
+        movable: true,
         webPreferences: {
             nodeIntegration: true
         }
