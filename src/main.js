@@ -7,7 +7,7 @@ app.dock.hide();
 
 
 const createTray = () => {
-    tray = new Tray(path.join(__dirname, 'assets/time.png'));
+    tray = new Tray(path.join(__dirname, 'assets/stopwatch.png'));
     tray.addListener('click', createWindow);
 }
 
