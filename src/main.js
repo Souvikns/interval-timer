@@ -4,7 +4,9 @@ const { timer } = require('./process/main/timer')
 
 let tray = null;
 let window = null;
-app.dock.hide();
+if(process.platform === "darwin"){
+    app.dock.hide();
+}
 
 
 
