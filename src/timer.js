@@ -9,5 +9,9 @@ class Timer{
         this.time = num;
         this.remain = num;
     }
+
+    getRemainTime(){
+        return this.remain;
+    }
     
 }
