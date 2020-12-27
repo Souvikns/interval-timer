@@ -4,7 +4,7 @@ const { timer } = require('./process/main/timer')
 
 let tray = null;
 let window = null;
-if(process.platform === "darwin"){
+if (process.platform === "darwin") {
     app.dock.hide();
 }
 
@@ -16,18 +16,28 @@ const createTray = () => {
 }
 
 const createWindow = () => {
-    window = new BrowserWindow({
-        width: 800,
-        height: 660,
-        resizable: false,
-        movable: true,
-        webPreferences: {
-            nodeIntegration: true,
-            devTools: true
-        },
+    if (window === null) {
+        window = new BrowserWindow({
+            width: 800,
+            height: 660,
+            resizable: false,
+            movable: true,
+            webPreferences: {
+                nodeIntegration: true,
+                devTools: true
+            },
+        })
+        window.loadFile(path.join(__dirname, 'screens/index.html'));
+        window.webContents.openDevTools();
+    } else {
+        window.show();
+    }
+
+    window.on('close', (event) => {
+        event.preventDefault();
+        window.hide();
+        return false;
     })
-    window.loadFile(path.join(__dirname, 'screens/index.html'));
-    window.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
@@ -36,8 +46,8 @@ app.whenReady().then(() => {
 
 
 app.on('window-all-closed', () => {
-    if (process.platform !== "darwin") {
-        app.quit()
+    if (process.platform !== "darwin" && process.platform !== "win32") {
+        app.quit();
     }
 })
 
