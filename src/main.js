@@ -4,7 +4,7 @@ const { timer } = require('./process/main/timer')
 
 let tray = null;
 let window = null;
-if(process.platform === "darwin"){
+if (process.platform === "darwin") {
     app.dock.hide();
 }
 
@@ -36,8 +36,8 @@ app.whenReady().then(() => {
 
 
 app.on('window-all-closed', () => {
-    if (process.platform !== "darwin") {
-        app.quit()
+    if (process.platform !== "darwin" && process.platform !== "win32") {
+        app.quit();
     }
 })
 
