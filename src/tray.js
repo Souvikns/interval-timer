@@ -15,19 +15,29 @@ class TrayApp {
     }
 
     createWindow() {
+        let bounds = this.tray.getBounds();
         if (this.window === null) {
             this.window = new BrowserWindow({
-                width: 800,
-                height: 660,
+                width: 400,
+                height: 360,
                 resizable: false,
-                movable: true,
+                movable: false,
                 webPreferences: {
                     nodeIntegration: true,
                     devTools: true
-                }
+                },
+                frame: false,
+                alwaysOnTop: true
             })
-            this.window.loadFile(path.join(__dirname, 'screens/index.html'));
-            this.window.webContents.openDevTools();
+            this.window.loadFile(path.join(__dirname, 'mainscreen/index.html'));
+            //this.window.webContents.openDevTools();
+            if (process.platform === "darwin") {
+                let winBounds = this.window.getBounds();
+                let trayBounds = this.tray.getBounds();
+                let x = Math.round(trayBounds.x + (trayBounds.width / 2) - (winBounds.width / 2));
+                let y = trayBounds.y + trayBounds.height;
+                this.window.setPosition(x, y);
+            }
         } else {
             this.window.show();
         }
