@@ -48,6 +48,9 @@ class TrayApp {
             return false;
         })
     }
+    hideWindow(){
+        this.window.hide();
+    }
 }
 
 module.exports = {

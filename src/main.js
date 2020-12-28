@@ -1,5 +1,5 @@
 const { app, ipcMain } = require('electron');
-const { TrayApp } = require('./tray')
+const { TrayApp } = require('./tray');
 
 let trayApp = new TrayApp();
 if (process.platform === "darwin") {
@@ -21,4 +21,8 @@ app.on('window-all-closed', () => {
 ipcMain.handle('ready', (event, ...args) => {
     console.log(event)
     ipcMain.emit('tick')
+})
+
+ipcMain.handle('hide-window', (event, ...args) => {
+    trayApp.hideWindow();
 })
