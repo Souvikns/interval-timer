@@ -29,8 +29,9 @@ class TrayApp {
                 frame: false,
                 alwaysOnTop: true
             })
-            this.window.loadFile(path.join(__dirname, 'mainscreen/index.html'));
+            //this.window.loadFile(path.join(__dirname, 'mainscreen/index.html'));
             //this.window.webContents.openDevTools();
+            this.window.loadURL('http://localhost:3000/');
             if (process.platform === "darwin") {
                 let winBounds = this.window.getBounds();
                 let trayBounds = this.tray.getBounds();
