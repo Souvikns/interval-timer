@@ -10,7 +10,6 @@ class Timer {
         this.time = null;
         this.interval = null;
     }
-    
 
     test() {
         return "done";
