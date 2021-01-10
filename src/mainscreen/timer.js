@@ -4,34 +4,57 @@
  * Right now we are gonna build acording to minutes 
  * interval. 
  */
+/**
+ * Main Functions 
+ * start timer
+ * stop timer 
+ * maintain timer state
+ * calculate next interval 
+ * return callback and update the timer state
+ */
+
+class Time {
+    constructor(val, time) {
+        this.val = val;
+        this.time = time;
+    }
+
+    getNextInterval(){
+        switch(this.time){
+            case "H":
+                return ""
+            case "M":
+                return ""
+        }
+    }
+}
+
 
 class Timer {
     constructor() {
         this.time = null;
         this.interval = null;
+        //=======================
+        this.startTime = null;
+        this.currTime = 0;
+        this.isRunning = false;
     }
-    
 
-    test() {
-        return "done";
+    timerState() {
+        return this.isRunning;
     }
 
-    start(time, interval, cb) {
-        this.interval = interval;
-        this.time = time;
+    start({val, time}, cb) {
+        this.interval = new Time(val, time)
         setInterval(() => {
-            /**
-             * If the diff between the current time and the 
-             * start time is equal to interval we call the callback,
-             * and update the start time with the current time. 
-             */
-            if((new Date.now() - new Date.now(this.time)) === this.interval){
-                cb();
-            }
-            
-        }, 1000)
+
+        }, this.interval);
+    }
+
+    stop() {
+
     }
 
 }
 
-module.exports = { Timer }
+module.exports = { Timer, Time }
