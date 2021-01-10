@@ -47,8 +47,13 @@ class Timer {
     start({val, time}, cb) {
         this.interval = new Time(val, time)
         setInterval(() => {
-
-        }, this.interval);
+            if(new Date.now() === this.interval.getNextInterval()){
+                cb();
+            }
+            else{
+                this.currTime = this.currTime +=1;
+            }
+        }, 1000);
     }
 
     stop() {
