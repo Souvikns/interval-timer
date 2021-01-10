@@ -22,9 +22,9 @@ class Time {
     getNextInterval() {
         switch (this.time) {
             case "H":
-                return ""
+                return this.val * 3600
             case "M":
-                return ""
+                return this.val * 60
         }
     }
 }
