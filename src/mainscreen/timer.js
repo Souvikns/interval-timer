@@ -5,7 +5,7 @@
  * interval. 
  */
 /**
- * Main Functions 
+ * Main Functions:
  * start timer
  * stop timer 
  * maintain timer state
