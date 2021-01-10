@@ -19,8 +19,8 @@ class Time {
         this.time = time;
     }
 
-    getNextInterval(){
-        switch(this.time){
+    getNextInterval() {
+        switch (this.time) {
             case "H":
                 return ""
             case "M":
@@ -38,26 +38,28 @@ class Timer {
         this.startTime = null;
         this.currTime = 0;
         this.isRunning = false;
+        this.state = null
     }
 
     timerState() {
         return this.isRunning;
     }
 
-    start({val, time}, cb) {
+    start({ val, time }, finish, tick) {
         this.interval = new Time(val, time)
-        setInterval(() => {
-            if(new Date.now() === this.interval.getNextInterval()){
-                cb();
+        this.state = setInterval(() => {
+            if (new Date.now() === this.interval.getNextInterval()) {
+                finish();
             }
-            else{
-                this.currTime = this.currTime +=1;
+            else {
+                this.currTime = this.currTime += 1;
+                tick();
             }
         }, 1000);
     }
 
     stop() {
-
+        clearInterval(this.state);
     }
 
 }
