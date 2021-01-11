@@ -1,4 +1,4 @@
-const {Timer} = require('../mainscreen/timer');
+const { Timer } = require('../mainscreen/timer');
 
 const timer = new Timer();
 
