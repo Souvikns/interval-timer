@@ -48,10 +48,16 @@ class Timer {
     }
 
     start({ val, time }, finish, tick) {
+        if(this.isRunning === true){
+            return;
+        }else{
+            this.isRunning = true;
+        }
         this.interval = new Time(val, time)
         this.state = setInterval(() => {
             if (this.currTime === this.interval.getNextInterval()) {
                 finish();
+                this.currTime = 0;
             }
             else {
                 this.currTime = this.currTime += 1;
@@ -62,6 +68,7 @@ class Timer {
 
     stop() {
         clearInterval(this.state);
+        this.isRunning = false;
     }
 
 }
