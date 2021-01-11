@@ -50,12 +50,12 @@ class Timer {
     start({ val, time }, finish, tick) {
         this.interval = new Time(val, time)
         this.state = setInterval(() => {
-            if (new Date.now() === this.interval.getNextInterval()) {
+            if (this.currTime === this.interval.getNextInterval()) {
                 finish();
             }
             else {
                 this.currTime = this.currTime += 1;
-                tick();
+                tick(this.interval.getNextInterval() - this.currTime);
             }
         }, 1000);
     }
