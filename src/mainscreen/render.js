@@ -6,13 +6,14 @@ const { Timer } = require('./timer');
 const closebtn = document.getElementById('closebtn');
 const mainScreen = document.getElementById('mainscreen')
 const secondScreen = document.getElementById('secondscreen');
+const startTimerButton = document.getElementById('start-timer')
 
 
-document.getElementById("closebtn").addEventListener('click', () => {
+closebtn.addEventListener('click', () => {
     ipcRenderer.invoke('hide-window');
 })
 
-document.getElementById("start-timer").addEventListener('click', () => {
+startTimerButton.addEventListener('click', () => {
     mainScreen.hidden = true;
     secondScreen.hidden = false;
 })
