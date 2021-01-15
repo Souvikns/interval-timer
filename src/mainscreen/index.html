@@ -18,36 +18,41 @@
 
     <div class="spacing"></div>
 
-    <div style="padding: 0px 25px;">
+    <div id="mainscreen">
+        <div style="padding: 0px 25px;">
         
-        <div class="block">
-            <div class="columns is-mobile is-vcentered">
-                <div class="column is-three-fifths">
-                    <input class="input" type="number" min="1" max="12" />
-                </div>
-                <div class="coulmn select">
-                    <select name="" id="">
-                        <option value="1">Minutes</option>
-                        <option value="2">Hours</option>
-                    </select>
+            <div class="block">
+                <div class="columns is-mobile is-vcentered">
+                    <div class="column is-three-fifths">
+                        <input class="input" type="number" min="1" max="12" />
+                    </div>
+                    <div class="coulmn select">
+                        <select name="" id="">
+                            <option value="1">Minutes</option>
+                            <option value="2">Hours</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="columns">
-            <div class="column is-full">
-                <textarea style="overflow:auto;resize:none" class="textarea" rows="2" draggable="false"></textarea>
+    
+            <div class="columns">
+                <div class="column is-full">
+                    <textarea style="overflow:auto;resize:none" class="textarea" rows="2" draggable="false"></textarea>
+                </div>
             </div>
-        </div>
-
-        <div class="block">
-            <center>
-                <button class="button is-primary">START</button>
-            </center>
+    
+            <div class="block">
+                <center>
+                    <button class="button is-primary">START</button>
+                </center>
+            </div>
         </div>
     </div>
-
     
+    
+    <div id="secondscreen">
+
+    </div>
 
 
     <script src="./render.js"></script>
