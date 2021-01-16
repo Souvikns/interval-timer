@@ -1,8 +1,5 @@
 .closebtn{
-    border-radius: 50%;
-    color: white;
-    background-color: red;
-    border: none;
+    padding: 10px 8px;
 }
 
 .spacing{
