@@ -1,10 +1,10 @@
 const { ipcRenderer } = require('electron');
 const { Timer } = require('./timer');
 
-// preventing window from reloading
-window.addEventListener('beforeunload', (ev) => {
-    ev.returnValue = true;
-})
+// // preventing window from reloading
+// window.addEventListener('beforeunload', (ev) => {
+//     ev.returnValue = true;
+// })
 
 
 //constants
