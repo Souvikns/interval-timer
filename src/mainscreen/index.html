@@ -23,12 +23,13 @@
             <div class="block">
                 <div class="columns is-mobile is-vcentered">
                     <div class="column is-three-fifths">
-                        <input class="input" type="number" min="1" max="12" />
+                        <input id="time-input" class="input" type="number" min="1" max="12" />
                     </div>
                     <div class="coulmn select">
-                        <select name="" id="">
-                            <option value="1">Minutes</option>
-                            <option value="2">Hours</option>
+                        <select name="" id="time-select">
+                            <option value="S">Seconds</option>
+                            <option value="M">Minutes</option>
+                            <option value="H">Hours</option>
                         </select>
                     </div>
                 </div>
@@ -66,7 +67,7 @@
         <div class="spacing"></div>
         <div>
             <center>
-                <button class="button is-danger">STOP</button>
+                <button id="stop-timer" class="button is-danger">STOP</button>
             </center>
         </div>
     </div>
