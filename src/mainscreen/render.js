@@ -22,6 +22,8 @@ const countdown = document.getElementById('countdown');
 const alertTime = document.getElementById('alert-time');
 const stopTimerButton = document.getElementById('stop-timer');
 
+let timer = new Timer();
+
 const getTimeInput = () => {
     return parseInt(timeInput.value);
 }
@@ -57,15 +59,18 @@ closebtn.addEventListener('click', () => {
 startTimerButton.addEventListener('click', () => {
     mainScreen.style.display = "none";
     secondScreen.style.display = "block";
-    // let timer = new Timer();
-    // timer.start({ val: getTimeInput(), time: getTimeSelect() }, () => {
-    //     let notification = new Notification("Drink Water", { "vibrate": true })
-    // }, tick => {
-
-    // })
+    
+    timer.start({ val: getTimeInput(), time: getTimeSelect() }, () => {
+        let notification = new Notification(getNotificationText(), { "vibrate": true })
+    }, tick => {
+        updateCountdownText(tick);
+    })
 });
 
 
 stopTimerButton.addEventListener('click', () => {
-    // we stop the timer but resume keep the timer state.
+    timer.stop();
+    
+    secondScreen.style.display = "none";
+    mainScreen.style.display = "block";
 })
