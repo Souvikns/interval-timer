@@ -24,6 +24,15 @@ const stopTimerButton = document.getElementById('stop-timer');
 
 let timer = new Timer();
 
+const convertTime = time => {
+    let hour = parseInt(time / 3600);
+    time = time % 3600;
+    let minutes = parseInt(time / 60);
+    time = time % 60;
+    let seconds = time % 60;
+    return `${hour}:${minutes}:${seconds}`;
+}
+
 const getTimeInput = () => {
     return parseInt(timeInput.value);
 }
@@ -59,18 +68,18 @@ closebtn.addEventListener('click', () => {
 startTimerButton.addEventListener('click', () => {
     mainScreen.style.display = "none";
     secondScreen.style.display = "block";
-    
+
     timer.start({ val: getTimeInput(), time: getTimeSelect() }, () => {
         let notification = new Notification(getNotificationText(), { "vibrate": true })
     }, tick => {
-        updateCountdownText(tick);
+        updateCountdownText(convertTime(tick));
     })
 });
 
 
 stopTimerButton.addEventListener('click', () => {
     timer.stop();
-    
+
     secondScreen.style.display = "none";
     mainScreen.style.display = "block";
 })
