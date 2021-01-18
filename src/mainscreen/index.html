@@ -37,7 +37,7 @@
     
             <div class="columns">
                 <div class="column is-full">
-                    <textarea style="overflow:auto;resize:none" class="textarea" rows="2" draggable="false"></textarea>
+                    <textarea id="notification-text" style="overflow:auto;resize:none" class="textarea" rows="2" draggable="false"></textarea>
                 </div>
             </div>
     
@@ -54,14 +54,14 @@
         <div class="columns is-mobile">
             <div class="column is-half is-offset-one-quarter">
                 <center>
-                    <h4 id="countdown" class="is-size-2 has-text-dark">1:29:36</h4>
+                    <h4 id="countdown" class="is-size-2 has-text-dark"></h4>
                 </center>
             </div>
         </div>
 
         <div>
             <center>
-                <span>Next Alert - <span class="has-text-danger-dark">3:20 PM</span></span>
+                <span>Next Alert - <span id="alert-time" class="has-text-danger-dark">3:20 PM</span></span>
             </center>
         </div>
         <div class="spacing"></div>
