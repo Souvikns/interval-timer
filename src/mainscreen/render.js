@@ -69,7 +69,8 @@ startTimerButton.addEventListener('click', () => {
     mainScreen.style.display = "none";
     secondScreen.style.display = "block";
 
-    timer.start({ val: getTimeInput(), time: getTimeSelect() }, () => {
+    timer.start({ val: getTimeInput(), time: getTimeSelect() }, (nextTime) => {
+        updateAlertTimeText(`${nextTime.getHours()}:${nextTime.getMinutes()}:${nextTime.getSeconds()}`);
         let notification = new Notification(getNotificationText(), { "vibrate": true })
     }, tick => {
         updateCountdownText(convertTime(tick));

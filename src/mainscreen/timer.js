@@ -29,6 +29,13 @@ class Time {
                 return this.val;
         }
     }
+
+    nextTime() {
+        let now = new Date();
+        let nextTime = new Date(now.getTime() + this.getNextInterval() * 1000);
+
+        return nextTime;
+    }
 }
 
 
@@ -48,15 +55,15 @@ class Timer {
     }
 
     start({ val, time }, finish, tick) {
-        if(this.isRunning === true){
+        if (this.isRunning === true) {
             return;
-        }else{
+        } else {
             this.isRunning = true;
         }
         this.interval = new Time(val, time)
         this.state = setInterval(() => {
             if (this.currTime === this.interval.getNextInterval()) {
-                finish();
+                finish(this.interval.nextTime());
                 this.currTime = 0;
             }
             else {
