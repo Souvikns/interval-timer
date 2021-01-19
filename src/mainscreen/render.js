@@ -1,5 +1,5 @@
 const { ipcRenderer } = require('electron');
-const { Timer } = require('./timer');
+const { Timer, Time } = require('./timer');
 
 // preventing window from reloading
 window.addEventListener('beforeunload', (ev) => {
@@ -42,6 +42,10 @@ const getTimeSelect = () => {
 }
 
 const getNotificationText = () => {
+    let text = notificationText.value;
+    if(text === ""){
+        return "Interval Timer"
+    }
     return notificationText.value;
 }
 
@@ -66,10 +70,15 @@ closebtn.addEventListener('click', () => {
 });
 
 startTimerButton.addEventListener('click', () => {
+    let time = new Time(getTimeInput(), getTimeSelect());
+    updateCountdownText(convertTime(time.getNextInterval()));
+    updateAlertTimeText(`${time.nextTime().getHours()}:${time.nextTime().getMinutes()}:${time.nextTime().getSeconds()}`)
+
     mainScreen.style.display = "none";
     secondScreen.style.display = "block";
 
-    timer.start({ val: getTimeInput(), time: getTimeSelect() }, () => {
+    timer.start({ val: getTimeInput(), time: getTimeSelect() }, (nextTime) => {
+        updateAlertTimeText(`${nextTime.getHours()}:${nextTime.getMinutes()}:${nextTime.getSeconds()}`);
         let notification = new Notification(getNotificationText(), { "vibrate": true })
     }, tick => {
         updateCountdownText(convertTime(tick));
