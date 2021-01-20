@@ -5,7 +5,8 @@
   "main": "src/main.js",
   "scripts": {
     "test": "jest",
-    "dev": "electron ."
+    "dev": "electron .",
+    "dist": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=icon.png --prune=true --out=release-builds"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,8 @@
   "homepage": "https://github.com/Souvikns/interval-timer#readme",
   "devDependencies": {
     "electron": "^11.1.1",
+    "electron-builder": "^22.9.1",
+    "electron-packager": "^15.2.0",
     "jest": "^26.6.3"
   }
 }
