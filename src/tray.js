@@ -1,4 +1,4 @@
-const { Tray, BrowserWindow } = require('electron');
+const { Tray, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
 class TrayApp {
@@ -9,6 +9,11 @@ class TrayApp {
 
     createTray() {
         this.tray = new Tray(path.join(__dirname, 'assets/stopwatch.png'));
+        this.tray.setContextMenu(Menu.buildFromTemplate([{
+            label: 'quit', type: 'normal', click: () => {
+                process.exit();
+            }
+        }]))
         this.tray.addListener('click', () => {
             this.createWindow();
         });
