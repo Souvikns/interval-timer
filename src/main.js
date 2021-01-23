@@ -11,7 +11,6 @@ app.whenReady().then(() => {
     trayApp.createTray();
 });
 
-
 app.on('window-all-closed', () => {
     if (process.platform !== "darwin" && process.platform !== "win32") {
         app.quit();
